@@ -1,0 +1,18 @@
+version: '3'
+services:
+  gym-service:
+    build: ./GymService
+    ports:
+      - "80:8080"
+    networks:
+      - services-net
+    depends_on:
+      - contacts-service
+  contacts-service:
+    build: ./contacts
+    ports:
+      - "5000:5000"
+    networks:
+      - services-net
+networks:
+  services-net:
