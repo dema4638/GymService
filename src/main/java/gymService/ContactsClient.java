@@ -12,7 +12,7 @@ import java.util.List;
 public class ContactsClient {
 
     private final Client client = ClientBuilder.newClient();
-    WebTarget webTarget = client.target("http://193.219.91.103:5000/");
+    WebTarget webTarget = client.target("http://contacts-service:5000/");
     private List<Contact> listOfContacts;
 
     public ContactsClient(){
