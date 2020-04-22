@@ -27,27 +27,27 @@ To get one member with particular id.
 #### PUT
 ```aidl
 URI:
-/books/01234567890
+/memberContact/1111
 
 Body:
-{"Pavadinimas": "", "Autorius": "", "Metai":""}
+{"surname": "Smith", "name": "Will", "number": "863721367", "email": "WillSmith@gmail.com", "membershipStart" : "2020-03-01T22:00:00Z[UTC]","membershipEnd":"2020-03-30T22:00:00Z[UTC]","plan":"Premium"}
 ```
-To change book's title, author or year it was written, according to it's ISBN. If given ISBN in URI is not found in the library, a new book is created on the list.
+To update member's information or add new member, when member with given id is not found in the database.
 
 #### DELETE
 ```aidl
 URI:
-/books/9786090138823
+/memberContact/12345
 ```
-To delete the book which ISBN is given in URI.
+To delete the member from registry with specific id.
 
 #### POST
 ```aidl
 URI:
-/books
+/memberContact
 
 Body:
-{"Pavadinimas": "", "Autorius": "", "ISBN": "", "Metai":""}
+{"surname": "Smith", "name": "Will", "number": "863721367", "email": "WillSmith@gmail.com", "membershipStart" : "2020-03-01T22:00:00Z[UTC]","membershipEnd":"2020-03-29T22:00:00Z[UTC]","plan":"Premium", "id":156458}
 ```
-To add new book to the library.
+To add new member to the gym database.
 # GymService
