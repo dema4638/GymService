@@ -1,7 +1,7 @@
 version: '3'
 services:
   gym-service:
-    build: ./GymService
+    build: .
     ports:
       - "80:8080"
     networks:
@@ -9,7 +9,7 @@ services:
     depends_on:
       - contacts-service
   contacts-service:
-    build: ./contacts
+    build: ../contacts
     ports:
       - "5000:5000"
     networks:
