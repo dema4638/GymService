@@ -59,6 +59,7 @@ public class ContactsClient {
     public void putContact(Contact contact, int id) throws ContactsClientException {
         WebTarget memberWebTarget = webTarget.path("contacts/"+ id);
         Invocation.Builder invocationBuilder = memberWebTarget.request(MediaType.APPLICATION_JSON);
+        contact.setId(null);  // Otherwise put request fails if ID is in body
         Response response = invocationBuilder.put(Entity.entity(contact, MediaType.APPLICATION_JSON));
         if (!(response.getStatus() >= 200 && response.getStatus() < 400)) {
             throw new ContactsClientException(response);
