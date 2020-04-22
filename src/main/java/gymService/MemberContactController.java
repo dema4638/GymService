@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("/memberContact")
+@Path("/membersContacts")
 
 public class MemberContactController {
 
@@ -25,14 +25,15 @@ public class MemberContactController {
             List<Contact> listOfContacts = new ContactsClient().getAllContacts();
             for (Member member : listOfMembers) {
                 int i = 0;
+                MemberContact memberContact = new MemberContact(member, null);
                 while (i < listOfContacts.size()) {
-                    if (member.getID().equals(listOfContacts.get(i).getId())) {
-                        MemberContact memberContact = new MemberContact(member, listOfContacts.get(i));
-                        membersContacts.add(memberContact);
+                    if (member.getId().equals(listOfContacts.get(i).getId())) {
+                         memberContact.setContact(listOfContacts.get(i));
                         break;
                     }
                     i++;
                 }
+                membersContacts.add(memberContact);
             }
 
             return Response.ok().entity(membersContacts).build();
@@ -110,14 +111,14 @@ public class MemberContactController {
     public Response handlePutRequest(MemberContact memberContact, @PathParam("id") int id) {
         try {
             boolean memberExisted = Database.memberExists(id, memberContact);
+            memberContact.getContact().setId(id);
+            memberContact.getMember().setId(id);
             if (memberExisted) {
-                memberContact.setId(id);
                 Database.updateMember(memberContact, id);
                 Contact contact;
                 contact = getContact(memberContact);
                 new ContactsClient().putContact(contact, id);
             } else {
-                memberContact.setId(id);
                 addNewMember(memberContact);
             }
             return Response.ok().build();
@@ -132,13 +133,7 @@ public class MemberContactController {
     }
 
     public Contact getContact(MemberContact memberContact){
-        Contact contact = new Contact();
-        contact.setId(memberContact.getId());
-        contact.setEmail(memberContact.getEmail());
-        contact.setName(memberContact.getName());
-        contact.setSurname(memberContact.getSurname());
-        contact.setNumber(memberContact.getNumber());
-        return contact;
+        return memberContact.getContact();
     }
 
     public void addNewMember(MemberContact memberContact) throws ContactsClientException, AlreadyExistsException, InvalidDataException {

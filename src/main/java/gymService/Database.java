@@ -26,7 +26,7 @@ public class Database {
 
     public static Member getMemberByID(int id) {
         for (Member member : memberList) {
-            if (member.getID() == id) {
+            if (member.getId() == id) {
                 return member;
             }
         }
@@ -35,7 +35,7 @@ public class Database {
 
     public static void removeMember(int id) {
         for (Member member : memberList) {
-            if (member.getID() == id) {
+            if (member.getId() == id) {
                 memberList.remove(member);
                 break;
             }
@@ -45,20 +45,20 @@ public class Database {
     public static void postNewMember(MemberContact memberContact) throws AlreadyExistsException, InvalidDataException {
         validateData(memberContact);
 
-        if(memberList.stream().anyMatch(mem -> mem.getID() == memberContact.getId())) {
+        if(memberList.stream().anyMatch(mem -> mem.getId() == memberContact.getMember().getId())) {
             throw new AlreadyExistsException("Member with id " +
-                    memberContact.getId() + " already exists");
+                    memberContact.getMember().getId() + " already exists");
         }
 
-        memberList.add(new Member(memberContact.getId(),
-                memberContact.getMembershipStart(),
-                memberContact.getMembershipEnd(),
-                memberContact.getPlan()));
+        memberList.add(new Member(memberContact.getMember().getId(),
+                memberContact.getMember().getMembershipStart(),
+                memberContact.getMember().getMembershipEnd(),
+                memberContact.getMember().getPlan()));
     }
 
     public static boolean memberExists(int id, MemberContact memberContact) {
         for (Member member : memberList) {
-            if (id == member.getID()) {
+            if (id == member.getId()) {
                 return true;
             }
         }
@@ -68,10 +68,10 @@ public class Database {
     public static void updateMember(MemberContact memberContact, int id) throws InvalidDataException {
         validateData(memberContact);
         for (Member member : memberList) {
-            if (id == member.getID()) {
-                member.setPlan(memberContact.getPlan());
-                member.setMembershipEnd(memberContact.getMembershipEnd());
-                member.setMembershipStart(memberContact.getMembershipStart());
+            if (id == member.getId()) {
+                member.setPlan(memberContact.getMember().getPlan());
+                member.setMembershipEnd(memberContact.getMember().getMembershipEnd());
+                member.setMembershipStart(memberContact.getMember().getMembershipStart());
                 break;
             }
         }
@@ -79,16 +79,16 @@ public class Database {
 
     private static void validateData(MemberContact memberContact) throws InvalidDataException {
         ArrayList<String> invalidFields = new ArrayList<String>();
-        if(memberContact.getId() == null) {
+        if(memberContact.getMember().getId() == null) {
             invalidFields.add("id");
         }
-        if (memberContact.getMembershipEnd() == null) {
+        if (memberContact.getMember().getMembershipEnd() == null) {
             invalidFields.add("membershipEnd");
         }
-        if (memberContact.getMembershipStart() == null) {
+        if (memberContact.getMember().getMembershipStart() == null) {
             invalidFields.add("membershipStart");
         }
-        if (memberContact.getPlan() == null) {
+        if (memberContact.getMember().getPlan() == null) {
             invalidFields.add("plan");
         }
         if (!invalidFields.isEmpty()) {
