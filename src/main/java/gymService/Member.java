@@ -13,6 +13,10 @@ public class Member {
     private Date membershipEnd;
     private String plan;
 
+    public Member() {
+
+    }
+
     public Member(int id, Date membershipStart, Date membershipEnd, String plan){
         this.id = id;
         this.membershipStart = membershipStart;
