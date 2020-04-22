@@ -111,6 +111,7 @@ public class MemberContactController {
         try {
             boolean memberExisted = Database.memberExists(id, memberContact);
             if (memberExisted) {
+                memberContact.setId(id);
                 Database.updateMember(memberContact, id);
                 Contact contact;
                 contact = getContact(memberContact);
