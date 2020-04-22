@@ -86,7 +86,8 @@ public class MemberContactController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response handlePostRequest(MemberContact memberContact) {
         try {
-            Contact contact = getContact(memberContact);
+            Contact contact;
+            contact = getContact(memberContact);
             Database.postNewMember(memberContact);
             new ContactsClient().postContact(contact);
             return Response.ok().build();
@@ -109,14 +110,16 @@ public class MemberContactController {
     public Response handlePutRequest(MemberContact memberContact, @PathParam("id") int id) {
         try {
             boolean memberExisted = Database.memberExists(id, memberContact);
-            memberContact.setId(id);
             if (memberExisted) {
+                memberContact.setId(id);
                 Database.updateMember(memberContact, id);
+                Contact contact;
+                contact = getContact(memberContact);
+                new ContactsClient().putContact(contact, id);
             } else {
+                memberContact.setId(id);
                 addNewMember(memberContact);
             }
-            Contact contact = getContact(memberContact);
-            new ContactsClient().putContact(contact, id);
             return Response.ok().build();
         } catch (InvalidDataException ex) {
             return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
@@ -138,7 +141,10 @@ public class MemberContactController {
         return contact;
     }
 
-    public void addNewMember(MemberContact memberContact) throws AlreadyExistsException, InvalidDataException {
+    public void addNewMember(MemberContact memberContact) throws ContactsClientException, AlreadyExistsException, InvalidDataException {
+        Contact contact;
+        contact = getContact(memberContact);
         Database.postNewMember(memberContact);
+        new ContactsClient().postContact(contact);
     }
 }
