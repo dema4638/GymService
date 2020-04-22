@@ -50,4 +50,3 @@ Body:
 {"surname": "Smith", "name": "Will", "number": "863721367", "email": "WillSmith@gmail.com", "membershipStart" : "2020-03-01T22:00:00Z[UTC]","membershipEnd":"2020-03-29T22:00:00Z[UTC]","plan":"Premium", "id":156458}
 ```
 To add new member to the gym database.
-# GymService
