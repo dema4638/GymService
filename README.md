@@ -9,7 +9,36 @@ To launch the application:
 4. docker-compose up
 5. [Optional] to rebuild application: docker-compose-up --build
 
-### Follow these instructions:
+### Follow these instructions to make SOAP requests:
+
+#### GET
+To see all members and their contacts:
+```aidl
+<?xml version = "1.0"?>
+<SOAP-ENV:Envelope
+   xmlns:SOAP-ENV = "http://schemas.xmlsoap.org/soap/envelope/"
+   SOAP-ENV:encodingStyle = "http://www.w3.org/2001/12/soap-encoding">
+   <SOAP-ENV:Body>
+   <m:getAllMembersAndContacts xmlns:m = "http://gymService/">
+      </m:getAllMembersAndContacts>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+```
+
+To get the member ant their contacts with specific id:
+```aidl
+<?xml version = "1.0"?>
+<SOAP-ENV:Envelope
+   xmlns:SOAP-ENV = "http://schemas.xmlsoap.org/soap/envelope/"
+   SOAP-ENV:encodingStyle = "http://www.w3.org/2001/12/soap-encoding">
+   <SOAP-ENV:Body>
+   <m:getMemberAndContacts xmlns:m = "http://gymService/">
+   	<id>12345</id>
+      </m:getMemberAndContacts>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+```
+### Follow these instructions to make REST requests:
 
 #### GET
 ```aidl
