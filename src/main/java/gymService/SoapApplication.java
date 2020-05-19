@@ -7,6 +7,6 @@ public class SoapApplication extends Application {
     public SoapApplication () {
         super();
         System.setProperty("javax.xml.soap.SAAJMetaFactory", "com.sun.xml.messaging.saaj.soap.SAAJMetaFactoryImpl");
-        Endpoint.publish("http://localhost:8080/ws/people", new SoapGymService());
+        Endpoint.publish("http://193.219.91.103:14994/SoapGymService", new SoapGymService());
     }
 }
