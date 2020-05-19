@@ -54,8 +54,9 @@ public class ServiceLogic {
             InvalidDataException, ContactsClientException {
         Contact contact;
         contact = memberContact.getContact();
-        new ContactsClient().postContact(contact);
-        Database.postNewMember(memberContact);
+            new ContactsClient().postContact(contact);
+            Database.postNewMember(memberContact);
+
     }
 
     public boolean putMemberAndContacts(int id, MemberContact memberContact) throws InvalidDataException,

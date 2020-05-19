@@ -77,7 +77,7 @@ public class Database {
         }
     }
 
-    private static void validateData(MemberContact memberContact) throws InvalidDataException {
+    public static void validateData(MemberContact memberContact) throws InvalidDataException {
         ArrayList<String> invalidFields = new ArrayList<String>();
         if(memberContact.getMember().getId() == null) {
             invalidFields.add("id");

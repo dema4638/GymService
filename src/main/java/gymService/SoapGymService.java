@@ -56,6 +56,7 @@ public class SoapGymService implements GymService{
 
         MemberContact memberContact = new MemberContact();
         setMemberContact(id, number, name, surname, email, membershipStart, membershipEnd, plan, memberContact);
+        Database.validateData(memberContact);
         serviceLogic.postNewMemberAndContacts(memberContact);
         return "Member with id: "+id+" and their contacts added";
     }
@@ -68,6 +69,7 @@ public class SoapGymService implements GymService{
             throws InvalidDataException, ContactsClientException, AlreadyExistsException {
         MemberContact memberContact = new MemberContact();
         setMemberContact(id, number, name, surname, email, membershipStart, membershipEnd, plan, memberContact);
+        Database.validateData(memberContact);
         boolean memberExisted = serviceLogic.putMemberAndContacts(id, memberContact);
         if (memberExisted) {
             return "Member with id: "+id+" and their contacts updated";
