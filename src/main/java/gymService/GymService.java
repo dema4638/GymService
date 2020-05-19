@@ -22,22 +22,31 @@ public interface GymService {
 
 
     @WebMethod(operationName = "getMemberAndContacts")
-    public MemberContact getSoapAMember(@WebParam(name="id") int id) throws NoDataFoundException;
+    public MemberContact getSoapAMember(@WebParam(name="id") @XmlElement(required = true) int id) throws NoDataFoundException;
 
     @WebMethod(operationName = "deleteMemberAndContacts")
-    public String deleteSoapAMember(@WebParam(name="id") int id) throws NoDataFoundException, ContactsClientException;
+    public String deleteSoapAMember(@WebParam(name="id") @XmlElement(required = true) int id) throws NoDataFoundException, ContactsClientException;
 
 
     @WebMethod(operationName = "postMemberAndContacts")
-    public String soapAddNewMember(@WebParam(name="id") int id, @WebParam(name="name") String name,
-                                   @WebParam(name="surname") String surname, @WebParam(name="email") String email,
-                                   @WebParam(name="number") String number, @WebParam(name="membershipStartDate") Date membershipStart,
-                                   @WebParam(name="membershipEndDate") Date membershipEnd,@WebParam(name="plan") String plan) throws InvalidDataException, ContactsClientException, AlreadyExistsException;
+    public String soapAddNewMember(@WebParam(name="id") @XmlElement(required = true) int id,
+                                   @WebParam(name="name") @XmlElement(required = true) String name,
+                                   @WebParam(name="surname") @XmlElement(required = true) String surname,
+                                   @WebParam(name="email") @XmlElement(required = true) String email,
+                                   @WebParam(name="number") @XmlElement(required = true) String number,
+                                   @WebParam(name="membershipStartDate") @XmlElement(required = true) Date membershipStart,
+                                   @WebParam(name="membershipEndDate") @XmlElement(required = true) Date membershipEnd,
+                                   @WebParam(name="plan") @XmlElement(required = true) String plan)
+            throws InvalidDataException, ContactsClientException, AlreadyExistsException;
 
     @WebMethod(operationName = "putMemberAndContacts")
-    public String soapPutMember(@WebParam(name="id") int id, @WebParam(name="name") String name,
-                                @WebParam(name="surname") String surname, @WebParam(name="email") String email,
-                                @WebParam(name="number") String number, @WebParam(name="membershipStartDate") Date membershipStart,
-                                @WebParam(name="membershipEndDate") Date membershipEnd,@WebParam(name="plan") String plan) throws InvalidDataException, ContactsClientException, AlreadyExistsException;
+    public String soapPutMember(@WebParam(name="id") @XmlElement(required = true) int id,
+                                @WebParam(name="name") @XmlElement(required = true) String name,
+                                @WebParam(name="surname") @XmlElement(required = true) String surname,
+                                @WebParam(name="email") @XmlElement(required = true) String email,
+                                @WebParam(name="number") @XmlElement(required = true) String number,
+                                @WebParam(name="membershipStartDate") @XmlElement(required = true) Date membershipStart,
+                                @WebParam(name="membershipEndDate") @XmlElement(required = true) Date membershipEnd,
+                                @WebParam(name="plan") @XmlElement(required = true) String plan) throws InvalidDataException, ContactsClientException, AlreadyExistsException;
 
 }
