@@ -3,6 +3,6 @@ ADD . /project
 WORKDIR /project
 RUN mvn clean validate install
 
-FROM jboss/wildfly as server
+FROM jboss/wildfly:19.0.0.Final as server
 COPY --from=builder project/target/GymService-1.0-SNAPSHOT.war /opt/jboss/wildfly/standalone/deployments/
 RUN mv /opt/jboss/wildfly/standalone/deployments/GymService-1.0-SNAPSHOT.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
