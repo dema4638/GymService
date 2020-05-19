@@ -54,8 +54,8 @@ public class ServiceLogic {
             InvalidDataException, ContactsClientException {
         Contact contact;
         contact = memberContact.getContact();
-        Database.postNewMember(memberContact);
         new ContactsClient().postContact(contact);
+        Database.postNewMember(memberContact);
     }
 
     public boolean putMemberAndContacts(int id, MemberContact memberContact) throws InvalidDataException,
@@ -64,10 +64,10 @@ public class ServiceLogic {
         memberContact.getContact().setId(id);
         memberContact.getMember().setId(id);
         if (memberExisted) {
-            Database.updateMember(memberContact, id);
             Contact contact;
             contact = memberContact.getContact();
             new ContactsClient().putContact(contact, id);
+            Database.updateMember(memberContact, id);
             return true;
         } else {
             postNewMemberAndContacts(memberContact);
