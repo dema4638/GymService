@@ -7,7 +7,7 @@ To launch the application:
 2. Git clone https://github.com/augkik/contacts.git
 3. cd GymService
 4. docker-compose up
-5. [Optional] to rebuild application: docker-compose-up --build
+5. [Optional] to rebuild application: docker-compose up --build
 
 ### Follow these instructions to make SOAP requests:
 
