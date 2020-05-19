@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @WebService(endpointInterface = "gymService.GymService")
-public class GymServiceImpl implements GymService{
+public class SoapGymService implements GymService{
 
     private ServiceLogic serviceLogic = new ServiceLogic();
     private MemberContactController memberContactController = new MemberContactController();

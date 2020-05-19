@@ -24,11 +24,11 @@ public interface GymService {
     @WebMethod(operationName = "getMemberAndContacts")
     public MemberContact getSoapAMember(@WebParam(name="id") int id) throws NoDataFoundException;
 
-    @WebMethod(operationName = "deleteMemberandContacts")
+    @WebMethod(operationName = "deleteMemberAndContacts")
     public String deleteSoapAMember(@WebParam(name="id") int id) throws NoDataFoundException, ContactsClientException;
 
 
-    @WebMethod(operationName = "addNewMemberAndContacts")
+    @WebMethod(operationName = "postMemberAndContacts")
     public String soapAddNewMember(@WebParam(name="id") int id, @WebParam(name="name") String name,
                                    @WebParam(name="surname") String surname, @WebParam(name="email") String email,
                                    @WebParam(name="number") String number, @WebParam(name="membershipStartDate") Date membershipStart,

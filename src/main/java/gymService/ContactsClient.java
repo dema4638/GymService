@@ -12,8 +12,8 @@ import java.util.List;
 public class ContactsClient {
 
     private final Client client = ClientBuilder.newClient();
-   // WebTarget webTarget = client.target("http://contacts-service:5000/");
-   WebTarget webTarget = client.target("http://193.219.91.103:5000/");
+    WebTarget webTarget = client.target("http://contacts-service:5000/");
+//   WebTarget webTarget = client.target("http://193.219.91.103:5000/");
     private List<Contact> listOfContacts;
 
     public ContactsClient(){
@@ -55,7 +55,7 @@ public class ContactsClient {
         Response response = invocationBuilder.post(Entity.entity(contact, MediaType.APPLICATION_JSON));
         if (!(response.getStatus() >= 200 && response.getStatus() < 400)) {
             throw new ContactsClientException(response,"Contacts service failed with status code "
-                    + response.getStatus() + "Error message: ");
+                    + response.getStatus() + " Error message: "+ response.readEntity(String.class));
         }
     }
 
