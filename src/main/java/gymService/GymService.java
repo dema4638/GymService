@@ -22,10 +22,12 @@ public interface GymService {
 
 
     @WebMethod(operationName = "getMemberAndContacts")
-    public MemberContact getSoapAMember(@WebParam(name="id") @XmlElement(required = true) int id) throws NoDataFoundException;
+    public MemberContact getSoapAMember(@WebParam(name="id") @XmlElement(required = true) int id)
+            throws NoDataFoundException;
 
     @WebMethod(operationName = "deleteMemberAndContacts")
-    public String deleteSoapAMember(@WebParam(name="id") @XmlElement(required = true) int id) throws NoDataFoundException, ContactsClientException;
+    public String deleteSoapAMember(@WebParam(name="id") @XmlElement(required = true) int id)
+            throws NoDataFoundException, ContactsClientException;
 
 
     @WebMethod(operationName = "postMemberAndContacts")
@@ -47,6 +49,7 @@ public interface GymService {
                                 @WebParam(name="number") @XmlElement(required = true) String number,
                                 @WebParam(name="membershipStartDate") @XmlElement(required = true) Date membershipStart,
                                 @WebParam(name="membershipEndDate") @XmlElement(required = true) Date membershipEnd,
-                                @WebParam(name="plan") @XmlElement(required = true) String plan) throws InvalidDataException, ContactsClientException, AlreadyExistsException;
+                                @WebParam(name="plan") @XmlElement(required = true) String plan)
+            throws InvalidDataException, ContactsClientException, AlreadyExistsException;
 
 }

@@ -61,12 +61,12 @@ public class ServiceLogic {
     public boolean putMemberAndContacts(int id, MemberContact memberContact) throws InvalidDataException,
             ContactsClientException, AlreadyExistsException {
         boolean memberExisted = Database.memberExists(id, memberContact);
-        memberContact.getContact().setId(id);
-        memberContact.getMember().setId(id);
         if (memberExisted) {
+            memberContact.getContact().setId(id);
             Contact contact;
             contact = memberContact.getContact();
             new ContactsClient().putContact(contact, id);
+            memberContact.getMember().setId(id);
             Database.updateMember(memberContact, id);
             return true;
         } else {
