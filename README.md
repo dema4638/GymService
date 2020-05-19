@@ -11,7 +11,8 @@ To launch the application:
 
 ### Follow these instructions to make SOAP requests:
 ```aidl
-Request Uri /SoapGymService
+Request Uri:
+/SoapGymService
 ```
 #### Read
 To see all members and their contacts:
