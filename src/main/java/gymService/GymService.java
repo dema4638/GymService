@@ -22,8 +22,8 @@ public interface GymService {
     public List<MemberContact> getSoapAllMembers();
 
 
-    @WebMethod(operationName = "getMemberAndContacts")
-    public MemberContact getSoapAMember(@WebParam(name="id") int id)
+    @WebMethod(operationName = "getMembersAndContacts")
+    public List<MemberContact> getSoapAMember(@WebParam(name="id") Integer id)
             throws NoDataFoundException;
 
     @WebMethod(operationName = "deleteMemberAndContacts")

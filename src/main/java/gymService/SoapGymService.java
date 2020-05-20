@@ -12,8 +12,7 @@ import gymService.exception.NoDataFoundException;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @WebService(endpointInterface = "gymService.GymService")
@@ -28,14 +27,20 @@ public class SoapGymService implements GymService{
     }
 
     @Override
-    public MemberContact getSoapAMember(@WebParam(name="id") int id) throws NoDataFoundException {
+    public List<MemberContact> getSoapAMember(@WebParam(name="id") Integer id) throws NoDataFoundException {
         try {
-            return serviceLogic.getMemberWithContacts(id);
+            if (id == null){
+                return getSoapAllMembers();
+            }
+            else {
+                List<MemberContact> memberContacts = new ArrayList<>();
+                 memberContacts.add(serviceLogic.getMemberWithContacts(id));
+                return memberContacts;
+            }
         } catch (NoDataFoundException ex) {
             throw ex;
         }
-
-        }
+    }
     @Override
     public String deleteSoapAMember(@WebParam(name="id") int id) throws ContactsClientException {
 
