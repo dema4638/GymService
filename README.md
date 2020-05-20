@@ -22,8 +22,8 @@ To see all members and their contacts:
    xmlns:SOAP-ENV = "http://schemas.xmlsoap.org/soap/envelope/"
    SOAP-ENV:encodingStyle = "http://www.w3.org/2001/12/soap-encoding">
    <SOAP-ENV:Body>
-   <m:getAllMembersAndContacts xmlns:m = "http://gymService/">
-      </m:getAllMembersAndContacts>
+   <m:getMembersAndContacts xmlns:m = "http://gymService/">
+      </m:getMembersAndContacts>
    </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 ```
@@ -35,9 +35,9 @@ To get the member ant their contacts with specific id:
    xmlns:SOAP-ENV = "http://schemas.xmlsoap.org/soap/envelope/"
    SOAP-ENV:encodingStyle = "http://www.w3.org/2001/12/soap-encoding">
    <SOAP-ENV:Body>
-   <m:getMemberAndContacts xmlns:m = "http://gymService/">
+   <m:getMembersAndContacts xmlns:m = "http://gymService/">
    	<id>12345</id>
-      </m:getMemberAndContacts>
+      </m:getMembersAndContacts>
    </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 ```
