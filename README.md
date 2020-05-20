@@ -10,8 +10,11 @@ To launch the application:
 5. [Optional] to rebuild application: docker-compose up --build
 
 ### Follow these instructions to make SOAP requests:
-
-#### GET
+```aidl
+Request Uri:
+/SoapGymService
+```
+#### Read
 To see all members and their contacts:
 ```aidl
 <?xml version = "1.0"?>
@@ -39,7 +42,7 @@ To get the member ant their contacts with specific id:
 </SOAP-ENV:Envelope>
 ```
 
-#### POST
+#### Create
 To create a new member ant their constacts:
 ```aidl
 <?xml version = "1.0"?>
@@ -61,7 +64,7 @@ To create a new member ant their constacts:
 </SOAP-ENV:Envelope>
 ```
 
-#### DELETE
+#### Delete
 To delete a member and their contacts with specific id:
 ```aidl
 <?xml version = "1.0"?>
@@ -75,7 +78,7 @@ To delete a member and their contacts with specific id:
    </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 ```
-#### PUT
+#### Update
 To update a member and their contacts with specific id:
 ```aidl
 <?xml version = "1.0"?>
